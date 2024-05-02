@@ -2,19 +2,18 @@ import React from "react";
 import { getIncidents } from "../../Services/IncidentsService";
 import { FaCircle, FaUser } from "react-icons/fa";
 import { Iincident } from "../../models/Incidents";
-
 export default function IncidenTable() {
   const [Incidents, setIncidents] = React.useState<Iincident[]>([]);
 
   React.useEffect(() => {
     getIncidents().then((data) => {
       setIncidents(data);
-      console.log("-->", data);
     });
   }, []);
 
   return (
     <>
+
       <table className="border border-slate-300">
         <thead className="border-1 text-sm font-semibold uppercase tracking-wider">
           <tr>
@@ -65,8 +64,8 @@ export default function IncidenTable() {
                 />
               </td>
               <td className="flex flex-row justify-center items-center px-6 py-16">
-                <FaUser className="bg-blue-500 rounded-full text-3xl" />{" "}
-                `{incident.user.name} {incident.user.lastName}`
+                <FaUser className=" text-blue-500 border-blue-600 rounded-full text-5xl" />
+                {incident.user.name} {incident.user.lastName}
               </td>
               <td className="Slabo text-sm text-normal px-6 py-4">
                 

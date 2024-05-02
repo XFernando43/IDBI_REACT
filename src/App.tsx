@@ -1,7 +1,7 @@
 import { Route, Router } from "wouter"
 import LogginPage from "./views/LogginPage"
 import RegisterPage from "./views/RegisterPage"
-import HomePage from "./views/Home/HomePage"
+import HomePage from "./views/HomePage"
 
 function App() {
   
