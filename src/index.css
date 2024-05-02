@@ -69,4 +69,5 @@ button:focus-visible {
 
 
 
+@import url("./assets/styles/1-settings/fontsFamilies.css");
 @import url("./assets/styles/2-generic/reset.css");
