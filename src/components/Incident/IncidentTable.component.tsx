@@ -1,13 +1,13 @@
 import React from "react";
 import { getIncidents } from "../../Services/IncidentsService";
 import { FaCircle, FaUser } from "react-icons/fa";
+import { Iincident } from "../../models/Incidents";
 
 export default function IncidenTable() {
   const [Incidents, setIncidents] = React.useState<Iincident[]>([]);
 
   React.useEffect(() => {
     getIncidents().then((data) => {
-      console.log(data[0]);
       setIncidents(data);
       console.log("-->", data);
     });
@@ -52,9 +52,9 @@ export default function IncidenTable() {
               </td>
               <td className="Slabo text-sm text-normal px-6 py-4">
                 Ocurrio Un problema en la habitación numero 203
-                {incident.details}
+                {incident.subject}
               </td>
-              <td className="Slabo text-sm text-normal px-6 py-4">
+              <td className="Slabo text-sm text-normal px-6 py-4 text-start">
                 {incident.details}
               </td>
               <td className="Slabo text-sm text-normal px-6 py-4">
@@ -66,10 +66,11 @@ export default function IncidenTable() {
               </td>
               <td className="flex flex-row justify-center items-center px-6 py-16">
                 <FaUser className="bg-blue-500 rounded-full text-3xl" />{" "}
-                JAVIERSITO EL PODEROSITO
+                `{incident.user.name} {incident.user.lastName}`
               </td>
               <td className="Slabo text-sm text-normal px-6 py-4">
-                      {incident.updatedAt}
+                
+                {incident.user.phone}
 
               </td>
             </tr>

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Iincident } from "../models/Incidents";
 const baseUrl = "http://localhost:3000";
 
 export async function getIncidents(): Promise<Iincident[]> {

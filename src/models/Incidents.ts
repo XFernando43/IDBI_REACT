@@ -1,5 +1,7 @@
-interface Iincident {
-  createdAt: string;
+import { IUser } from "./newUser.model";
+
+export interface Iincident {
+  createdAt: Date;
   details: string;
   imageUrl: string;
   incidentId: number;
@@ -7,4 +9,6 @@ interface Iincident {
   subject: string;
   type: string;
   updatedAt: string;
+
+  user:IUser;
 }
