@@ -10,6 +10,18 @@ a{
   color: black;
 }
 
+input[type="checkbox"] + label {
+  font-weight: bold;
+  line-height: 3em;
+  color: #ccc;
+  cursor: pointer;
+}
+input[type="checkbox"]:checked + label {
+  color: #0fbf12;
+}
+
+
+
 
 body, header, footer, section, div,template,html {
   margin: 0;
