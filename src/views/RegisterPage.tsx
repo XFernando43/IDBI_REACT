@@ -42,7 +42,7 @@ export default function RegisterPage() {
     
     return (
         <div className="d-flex justify-content-center align-items-center vh-100" style={{position: 'relative'}}>
-            <div className="shadow rounded d-flex flex-column gap-3 container p-4 rounded " style={{ maxWidth: '400px' }}>
+            <div className="shadow rounded d-flex flex-column gap-3 container p-4 " style={{ maxWidth: '400px' }}>
                 <div className='d-flex flex-column align-items-center gap-2 container'>
                     <h2 className="Slabo text-center mb-4">Register an Account Thecnical Test</h2>
                     <Image style={{ maxWidth: '200px' }} src="https://scontent.faqp1-1.fna.fbcdn.net/v/t39.30808-6/329182497_580658887303089_6817430973110470755_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEqfXDyrS2O1yYeifzy3wbM-VSywse27GT5VLLCx7bsZE3Hv2Dc8c4enQN1tXmP2VggrUO2_c_kMawX4XNvENYX&_nc_ohc=vY6uMHPkyAUQ7kNvgGvGJkQ&_nc_ht=scontent.faqp1-1.fna&oh=00_AfBEDmNqedsYaXME7qXV4z9oKOHHrhVKarlxT0K7wzaRhA&oe=6638D5D3" rounded />
