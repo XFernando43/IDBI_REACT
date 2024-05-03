@@ -2,9 +2,10 @@ import { Route, Router } from "wouter"
 import LogginPage from "./views/LogginPage"
 import RegisterPage from "./views/RegisterPage"
 import HomePage from "./views/HomePage"
-import CreateIncidentPage from "./views/createIncident"
-import ReviewIncidentView from "./views/reviewIncident"
-import NotFoundPage from "./components/commons/NotFoundPage"
+import CreateIncidentPage from "./views/createIncidentPage"
+import createIncidetPage from "./views/createIncidentPage"
+
+// import NotFoundPage from "./components/commons/NotFoundPage"
 
 function App() {
   
@@ -14,10 +15,11 @@ function App() {
         <Route path="/login" component={LogginPage} />
         <Route path="/register" component={RegisterPage} />
         <Route path="/createIncident" component={CreateIncidentPage} />
-        <Route path="/Incidet/:id" component={ReviewIncidentView} />
+        <Route path="/Incidet/:id" component={createIncidetPage} />
 
+        {/* <Route path="/:rest*" component={NotFoundPage} /> */}
 
-        <Route component={NotFoundPage} />
+        
 
     </Router>
   )

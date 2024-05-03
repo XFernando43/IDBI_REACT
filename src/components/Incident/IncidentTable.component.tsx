@@ -7,63 +7,67 @@ interface IncidenTableProps {
   indicents: Iincident[];
 }
 
-
-export default function IncidenTable(props:IncidenTableProps) {
-  
+export default function IncidenTable(props: IncidenTableProps) {
   let formatDate = useIncidentStore((state) => state.formatDay);
-  function redirect(id:string){ navigate(`/Incidet/${id}`);}
+  function redirect(id: string) {
+    navigate(`/Incidet/${id}`);
+  }
 
   return (
-    <div className="overflow-y-auto max-h-[800px]">
-
-      <table className=" table-auto overflow-y-auto sm:max-w-sm md:max-w-lg lg:max-w-xl xl:max-w-full">
-        <thead className="text-sm font-semibold uppercase tracking-wider">
-          <tr>
-            <th className="hover:bg-blue-300 Slabo text-sm text-black font-mono px-6 py-3 border-r border-slate-700">
+    <div className="overflow-y-auto max-h-[750px]">
+      <table>
+        <thead className="font-bold text-2xl uppercase tracking-wider">
+          <tr className="text-center">
+            <th className="hover:bg-blue-300 text-sm px-6 py-3 border-r border-slate-700">
               Proceso
             </th>
 
-            <th className="hover:bg-blue-300 Slabo text-sm text-black font-mono px-6 py-3 border-r border-slate-700">
+            <th className="hover:bg-blue-300 text-sm px-6 py-3 border-r border-slate-700">
               Estado
             </th>
 
-            <th className="hover:bg-blue-300 Slabo text-sm text-black font-mono px-6 py-3 border-r border-slate-700">
+            <th className="hover:bg-blue-300 text-sm px-6 py-3 border-r border-slate-700">
               Tipo
             </th>
 
-            <th className="hover:bg-blue-300 Slabo text-sm text-black font-mono px-6 py-3 border-r border-slate-700">
+            <th className="hover:bg-blue-300 text-sm px-6 py-3 border-r border-slate-700">
               Incidente
             </th>
-            <th className="hover:bg-blue-300 Slabo text-sm text-black font-mono px-6 py-3 border-r border-slate-700">
+            <th className="hover:bg-blue-300 text-sm px-6 py-3 border-r border-slate-700">
               Descripción
             </th>
-            <th className="hover:bg-blue-300 Slabo text-sm text-black font-mono px-6 py-3 border-r border-slate-700">
+            <th className="hover:bg-blue-300 text-sm px-6 py-3 border-r border-slate-700">
               Usuario
             </th>
-            <th className="hover:bg-blue-300 Slabo text-sm text-black font-mono px-6 py-3 border-r border-slate-700">
+            <th className="hover:bg-blue-300 text-sm px-6 py-3 border-r border-slate-700">
               Imagen
             </th>
-            <th className="hover:bg-blue-300 Slabo text-sm text-black font-mono px-6 py-3 border-r border-slate-700">
+            <th className="hover:bg-blue-300 text-sm px-6 py-3 border-r border-slate-700">
               Fecha
             </th>
           </tr>
         </thead>
         <tbody className="text-center text-gray-900">
           {props.indicents.map((incident, index) => (
-            <tr key={index} className="hover:bg-blue-200" onClick={()=>{redirect(incident.incidentId.toString())}} >
-              <td className="px-14">
-                
-                {incident.status === "OPEN" ? (
-                  <FaCircle className="text-green-500 text-5xl" />
+            <tr
+              key={index}
+              className="hover:bg-blue-200"
+              onClick={() => {
+                redirect(incident.incidentId.toString());
+              }}
+            >
+              <td className="px-10">
+              {incident.status === "OPEN" ? (
+                  <FaCircle className="text-green-500 text-3xl" />
                 ) : incident.status === "PROCESS" ? (
-                  <FaCircle className="text-blue-800 text-5xl" />
+                  <FaCircle className="text-blue-800 text-3xl" />
                 ) : incident.status === "CLOSE" ? (
-                  <FaCircle className="text-orange-300 text-5xl" />
+                  <FaCircle className="text-orange-300 text-3xl" />
                 ) : incident.status === "ERROR" ? (
-                  <FaCircle className="text-red-500 text-5xl" />
-                ) 
-                : null}
+                  <FaCircle className="text-red-500 text-3xl" />
+                ) : null}
               </td>
+
               <td className="Slabo font-semibold text-lg text-normal px-6 py-4">
                 {incident.status}
               </td>
@@ -88,9 +92,9 @@ export default function IncidenTable(props:IncidenTableProps) {
               </td>
               <td className="flex flex-row justify-center items-center px-6 py-16">
                 <FaUser className=" text-blue-500 text-6xl" />
-                {/* {incident.user.name} {incident.user.lastName} */}
+                {incident.user.name} {incident.user.lastName}
               </td>
-              <td className="Slabo text-sm text-normal px-6 py-4">
+              <td className="Slabo text-sm text-normal px-6 py-4 font-semibold">
                 {formatDate(incident.createAt)}
               </td>
             </tr>

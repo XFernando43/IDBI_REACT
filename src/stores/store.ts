@@ -37,8 +37,9 @@ export const useIncidentStore = create<Incident>((set) => ({
     }
   },
 
-  fetchIncidentByUserId: async (userId:string)=>{
+  fetchIncidentByUserId: async ()=>{
     try {
+      const userId = localStorage.getItem('userId');
       await axios.get(`${import.meta.env.VITE_API_URL_BASE}/incident/GetIncidentById/${userId}`).then((response)=>{
         console.log("--> users ",response.data);
         const data = response.data;

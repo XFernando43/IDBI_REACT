@@ -11,7 +11,7 @@ export interface Incident {
   fetchIncidents: () => Promise<void>;
   fetchIncidentById:(incidentId:string)=>Promise<void>;
 
-  fetchIncidentByUserId:(userId:string)=> Promise<void>;
+  fetchIncidentByUserId:()=> Promise<void>;
 
   orderByDate: (startDate: Date, endDate: Date) => Promise<void>;
   orderByState: (state:string) => void;

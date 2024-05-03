@@ -15,6 +15,7 @@ export const useAuthStore = create<User>((set) => ({
         set({ token:data.data.token});
         localStorage.setItem('token',data.data.token);
         localStorage.setItem('TypeUser',data.data.account.user.userType.typeId);
+        localStorage.setItem('userId',data.data.account.user.userId);
         
         if(data.data.account.user.userType.typeId == 1){
           navigate('/createIncident');
