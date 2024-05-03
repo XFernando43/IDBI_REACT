@@ -4,6 +4,14 @@ import { ICommentRequest } from "../models/request/createComment.model";
 import { ICommentResponse } from "../models/response/commentResponse.model";
 import axios from "axios";
 
+const token = localStorage.getItem('token');
+const config = {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+};
+
+
 export const useCommentStore = create<IComment>((set) => ({
   commentRequest: {} as ICommentRequest,
   commentsResponse: [] as ICommentResponse[],
@@ -11,15 +19,6 @@ export const useCommentStore = create<IComment>((set) => ({
   getCommentListByIncident: async (id: string) => {
     set({ commentsResponse: [] });
     try {
-
-      const token = localStorage.getItem('token');
-      
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-
       await axios
         .get(
           `${
@@ -37,23 +36,14 @@ export const useCommentStore = create<IComment>((set) => ({
 
   PostComment: async (text: string, incidentID:number, userId:number) => {
     
-
     try {
       const newComment: ICommentRequest = {
         userId: userId,
         incidentID: incidentID,
         content: text,
       };
-      await axios.post(
-        `${import.meta.env.VITE_API_URL_BASE}/comments`,
-        newComment
-      );
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL_BASE}/comments/obtenerPorIncidentes/${
-          newComment.incidentID
-        }`
-      );
-      set((state) => ({ ...state, commentsResponse: data }));
+      await axios.post(`${import.meta.env.VITE_API_URL_BASE}/comments`,newComment,config);
+
     } catch (error) {
       console.error("Error posting comment:", error);
     }

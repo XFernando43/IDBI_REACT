@@ -25,7 +25,7 @@ export default function CommentList() {
   }
 
   return (
-    <div className="container py-4">
+    <div className="container py-4 overflow-y-auto max-h-[250px] bg-slate-200 rounded-md shadow-2xl mt-4">
       <div className=" flex flex-col gap-2 ">
         <h2 className="text-center mb-4 font-bold text-primary">Comentarios</h2>
         <Form.Group>
