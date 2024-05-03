@@ -90,7 +90,7 @@ export default function IncidenTable(props: IncidenTableProps) {
                   alt="Incident"
                 />
               </td>
-              <td className="flex flex-row justify-center items-center px-6 py-16">
+              <td className="flex flex-row gap-2 justify-center items-center px-6 py-16">
                 <FaUser className=" text-blue-500 text-6xl" />
                 {incident.user.name} {incident.user.lastName}
               </td>
