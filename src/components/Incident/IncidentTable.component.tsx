@@ -72,8 +72,9 @@ export default function IncidenTable() {
               </td>
               <td className="Slabo text-sm text-normal px-6 py-4">
                 
-                {incident.user.phone}
-                {/* {incident.createdAt} */}
+                {/* {incident.user.phone} */}
+                {/* {JSON.stringify(incident)} */}
+                {incident.createAt}
 
               </td>
             </tr>
@@ -81,6 +82,8 @@ export default function IncidenTable() {
 
         </tbody>
       </table>
+
+      <button onClick={()=>{console.log(_Incidents)}}>PIPI</button>
     </>
   );
 }

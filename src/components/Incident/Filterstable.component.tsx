@@ -25,6 +25,8 @@ export default function FiltersTable() {
     // const startDate = new Date(DateFilterStart);
     // const endDate = new Date(DateFilterEnd);
 
+    console.log(incidents);
+
     // showAll();
     // orderByDate(startDate,endDate);
   }

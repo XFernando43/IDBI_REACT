@@ -23,13 +23,13 @@ export const useIncidentStore = create<Incident>((set) => ({
   orderByDate: (startDate: Date, endDate: Date) => {
     set((state) => {
       const filteredIncidents = state.incidents.filter((incident) => {
-        const incidentDate = new Date(incident.createdAt);
+        const incidentDate = new Date(incident.createAt);
         console.log(incident);
         return incidentDate >= startDate && incidentDate <= endDate;
       });
       const sortedIncidents = filteredIncidents.sort((a, b) => {
-        const dateA = new Date(a.createdAt);
-        const dateB = new Date(b.createdAt);
+        const dateA = new Date(a.createAt);
+        const dateB = new Date(b.createAt);
         return dateA.getTime() - dateB.getTime();
       });
       return { incidents: sortedIncidents };
