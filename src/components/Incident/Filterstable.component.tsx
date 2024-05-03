@@ -8,24 +8,21 @@ export default function FiltersTable() {
   const [DateFilterEnd, setDateFilterEnd] = React.useState("");
   const [StateFilter, setStateFilter] = React.useState("");
 
-  const incidents = useIncidentStore(state => state.incidents);
+  // const incidents = useIncidentStore(state => state.incidents);
   const orderByDate = useIncidentStore(state => state.orderByDate);
   const orderByStatus = useIncidentStore(state => state.orderByState);
 
-
-  function showAll(){
-    console.log(DateFilterStart,DateFilterEnd,StateFilter);
-  }
-
   function Test(){
     
-    const startDate = new Date(DateFilterStart);
-    const endDate = new Date(DateFilterEnd);
+    if(DateFilterStart !== "" && DateFilterEnd !== ""){
+      const startDate = new Date(DateFilterStart);
+      const endDate = new Date(DateFilterEnd);  
+      orderByDate(startDate,endDate);
+    }
+    if(StateFilter == "PROCESS" || StateFilter == "OPEN" || StateFilter == "CLOSE" ){
+      orderByStatus(StateFilter);
+    }
 
-  
-    orderByDate(startDate,endDate);
-
-    // orderByStatus(StateFilter);
   }
 
   return (
