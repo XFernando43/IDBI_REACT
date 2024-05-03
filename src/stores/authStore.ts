@@ -2,6 +2,7 @@ import { create } from "zustand";
 import axios from "axios";
 import { User } from "./Interfaces/user";
 import { IUser } from "../models/newUser.model";
+import { navigate } from 'wouter/use-browser-location';
 
 const baseUrl = "http://localhost:3000";
 
@@ -18,10 +19,10 @@ export const useAuthStore = create<User>((set) => ({
   Loggin: async (email: string, password: string) => {
     try {
       await axios.post(`${baseUrl}/account/Loggin`, {email,password,}).then((data)=>{
-        // console.log(data.data.token);
         set({ succes: true });
         set({ token:data.data.token});
         localStorage.setItem('token',data.data.token);
+        navigate('/home');
       }).catch(()=>{
         set({ failed: true });
       });

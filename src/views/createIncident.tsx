@@ -3,19 +3,23 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useIncidentStore } from "../stores/store";
 
 function CreateIncidentReport() {
-  // Estados para los campos del formulario
   const [subject, setSubject] = useState("");
-  const [type, setType] = useState(""); // Selector
+  const [type, setType] = useState("");
   const [details, setDetails] = useState("");
   const [image, setImage] = useState<File | null>(null);
   const submitIncident = useIncidentStore((state) => state.submitIncident);
+  
   function onChange(e: any) {
     const file = e.target.files[0];
     setImage(file);
   }
   function submitHandle(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    submitIncident(subject, details, type, image);
+    if (image) {
+      submitIncident(subject, details, type, image);
+    } else {
+      console.error('No se ha seleccionado una imagen.');
+    }
   }
 
   return (

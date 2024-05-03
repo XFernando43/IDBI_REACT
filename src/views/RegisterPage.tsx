@@ -3,6 +3,7 @@ import { Button, Form, Toast } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
 import { IUser } from '../models/newUser.model';
 import { useAuthStore } from '../stores/authStore';
+import { Link } from 'wouter';
 
 export default function RegisterPage() {
     const [name, setName] = React.useState('');
@@ -77,7 +78,7 @@ export default function RegisterPage() {
                     </Button>
                 </Form>
                 <footer className="mt-5 text-center">
-                    <span className='Slabo text-muted' >Don't have account <strong>Sign Up</strong></span>
+                    <span className='Slabo text-muted' >Don't have account <Link href="/login">Login</Link></span>
                 </footer>
 
 

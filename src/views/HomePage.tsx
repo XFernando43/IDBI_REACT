@@ -10,7 +10,6 @@ export default function HomePage() {
         
         <IncidentsState/>
         <FiltersTable />
-
         <IncidenTable />
       </Container>
     </div>

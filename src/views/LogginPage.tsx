@@ -5,7 +5,6 @@ import React, { FormEvent } from 'react';
 import { useAuthStore } from '../stores/authStore';
 
 
-
 export default function LoginPage() {
    
     const [email, setEmail] = React.useState("");
@@ -17,6 +16,7 @@ export default function LoginPage() {
 
     const hideSuccess = useAuthStore(state=> state.hideSucces);
     const hideFailed = useAuthStore(state=> state.hideFailed);
+
 
     function handleSubmit(e:FormEvent<HTMLFormElement>){
         e.preventDefault(); 
@@ -75,7 +75,7 @@ export default function LoginPage() {
                         </span>
                     </Toast.Body>
                 </Toast>
-
         </div>
+
     );
 }
