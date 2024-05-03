@@ -85,8 +85,6 @@ export default function IncidenTable() {
 
         </tbody>
       </table>
-
-      <button onClick={()=>{console.log(_Incidents)}}>PIPI</button>
     </>
   );
 }

@@ -6,9 +6,10 @@ export interface Incident {
   user: IUser;
 
   fetchIncidents: () => Promise<void>;
-  orderByDate: (startDate: Date, endDate: Date) => void;
+  
+  orderByDate: (startDate: Date, endDate: Date) => Promise<void>;
   orderByState: (state:string) => void;
-
+  
   formatDay:(date:string) => string;
 
   

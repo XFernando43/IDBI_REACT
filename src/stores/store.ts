@@ -3,11 +3,9 @@ import { IUser } from "../models/newUser.model";
 import { Iincident } from "../models/Incidents";
 import axios from "axios";
 import { Incident } from "./Interfaces/Incident";
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 
 const baseUrl = "http://localhost:3000";
-
-
 
 export const useIncidentStore = create<Incident>((set) => ({
   incidents: [] as Iincident[],
@@ -18,24 +16,30 @@ export const useIncidentStore = create<Incident>((set) => ({
       const data = response.data;
       set({ incidents: data });
     } catch (error) {
-      console.error('Error fetching incidents:', error);
+      console.error("Error fetching incidents:", error);
     }
   },
-  orderByDate: (startDate: Date, endDate: Date) => {
+  orderByDate: async (startDate: Date, endDate: Date) => {
     set((state) => {
+      if (state.incidents.length === 0) {
+        state.fetchIncidents();
+      }
       const filteredIncidents = state.incidents.filter((incident) => {
-        const incidentDate = new Date(incident.createAt);
-        console.log(incident);
-        return incidentDate >= startDate && incidentDate <= endDate;
+        const incidentDate = dayjs(incident.createAt);
+        const startDateParsed = dayjs(startDate);
+        const endDateParsed = dayjs(endDate);
+
+        const incidentDay = incidentDate.format("YYYY-MM-DD");
+        const startDay = startDateParsed.add(1, "day").format("YYYY-MM-DD");
+        const endDay = endDateParsed.add(1, "day").format("YYYY-MM-DD");
+
+        return incidentDay >= startDay && incidentDay <= endDay;
       });
-      const sortedIncidents = filteredIncidents.sort((a, b) => {
-        const dateA = new Date(a.createAt);
-        const dateB = new Date(b.createAt);
-        return dateA.getTime() - dateB.getTime();
-      });
-      return { incidents: sortedIncidents };
+
+      return { incidents: filteredIncidents };
     });
   },
+
   orderByState: (status: string) => {
     set((state) => {
       const sortedIncidents = state.incidents.slice().sort((a, b) => {
@@ -46,12 +50,9 @@ export const useIncidentStore = create<Incident>((set) => ({
       return { incidents: sortedIncidents };
     });
   },
-  formatDay:(date:string)=>{
+  formatDay: (date: string) => {
     const parsedDate = dayjs(date);
-
-    const formattedDate = parsedDate.format('YYYY-MM-DD HH:mm:ss');
-
+    const formattedDate = parsedDate.format("YYYY-MM-DD HH:mm:ss");
     return formattedDate;
-  }
-  
+  },
 }));

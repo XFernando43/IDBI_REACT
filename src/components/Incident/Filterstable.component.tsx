@@ -18,17 +18,14 @@ export default function FiltersTable() {
   }
 
   function Test(){
-    // console.log(incidents);
-    // console.log(incidents);
-    // orderByStatus("PROCESO");
     
-    // const startDate = new Date(DateFilterStart);
-    // const endDate = new Date(DateFilterEnd);
+    const startDate = new Date(DateFilterStart);
+    const endDate = new Date(DateFilterEnd);
 
-    console.log(incidents);
+  
+    orderByDate(startDate,endDate);
 
-    // showAll();
-    // orderByDate(startDate,endDate);
+    // orderByStatus(StateFilter);
   }
 
   return (
