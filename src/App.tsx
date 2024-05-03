@@ -3,7 +3,7 @@ import LogginPage from "./views/LogginPage"
 import RegisterPage from "./views/RegisterPage"
 import HomePage from "./views/HomePage"
 import CreateIncidentPage from "./views/createIncidentPage"
-import createIncidetPage from "./views/createIncidentPage"
+import ReviewIncidentView from "./views/reviewIncident"
 
 // import NotFoundPage from "./components/commons/NotFoundPage"
 
@@ -15,7 +15,7 @@ function App() {
         <Route path="/login" component={LogginPage} />
         <Route path="/register" component={RegisterPage} />
         <Route path="/createIncident" component={CreateIncidentPage} />
-        <Route path="/Incidet/:id" component={createIncidetPage} />
+        <Route path="/Incidet/:id" component={ReviewIncidentView} />
 
         {/* <Route path="/:rest*" component={NotFoundPage} /> */}
 

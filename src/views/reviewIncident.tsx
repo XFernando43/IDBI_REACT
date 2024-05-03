@@ -11,6 +11,7 @@ export default function ReviewIncidentView() {
     useEffect(() => {
         if (id) {
             fetchIncidentByID(id);
+            // console.log(incident); 
         }
     }, [id]);
 
@@ -28,7 +29,7 @@ export default function ReviewIncidentView() {
                             <ListGroup.Item><strong>Created at:</strong> {incident.createAt}</ListGroup.Item>
                             <ListGroup.Item><strong>Updated at:</strong> {incident.updateAt}</ListGroup.Item>
                             <ListGroup.Item>
-                                <strong>Reported by:</strong> {incident.details}
+                                <strong>Reported by:</strong> {incident.createAt}
                                 <br />
                                 <small><strong>Email:</strong> {incident.incidentId}</small>
                             </ListGroup.Item>
@@ -37,7 +38,6 @@ export default function ReviewIncidentView() {
                 </Card>
             )}
 
-            <button onClick={()=>{console.log(incident)}}>ACA</button>
         </Container>
     );
 }

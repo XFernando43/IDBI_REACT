@@ -1,13 +1,15 @@
 import { create } from "zustand";
 import axios from "axios";
-import { User } from "./Interfaces/user";
-import { IUser } from "../models/newUser.model";
 import { navigate } from 'wouter/use-browser-location';
+import { IAuth } from "./Interfaces/IAuth";
+import { IcreateNewUserAccountRequest } from "../models/request/createUser.model";
 
-export const useAuthStore = create<User>((set) => ({
+export const useAuthStore = create<IAuth>((set) => ({
   token: "",
   succes: false,
   failed: false,
+
+  // check
   Loggin: async (email: string, password: string) => {
     try {
       await axios.post(`${import.meta.env.VITE_API_URL_BASE}/account/Loggin`, {email,password,}).then((data)=>{
@@ -30,10 +32,13 @@ export const useAuthStore = create<User>((set) => ({
       console.error("Error fetching incidents:", error);
     }
   },
-  Register: async (user: IUser) => {
+ 
+  //check
+
+  Register: async (newUser: IcreateNewUserAccountRequest) => {
     try {
       await axios
-        .post(`${import.meta.env.VITE_API_URL_BASE}/account`, user)
+        .post(`${import.meta.env.VITE_API_URL_BASE}/account`, newUser)
         .then(() => {
           set({ succes: true });
         })
@@ -46,6 +51,7 @@ export const useAuthStore = create<User>((set) => ({
     }
   },
 
+  // check
   verifyLoggin: ()=>{
     if(localStorage.getItem('token') == null ){
       navigate('/login');

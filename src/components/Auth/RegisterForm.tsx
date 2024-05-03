@@ -4,7 +4,7 @@ import Image from 'react-bootstrap/Image';
 
 import { Link } from 'wouter';
 import { useAuthStore } from '../../stores/authStore';
-import { IUser } from '../../models/newUser.model';
+import { IcreateNewUserAccountRequest } from '../../models/request/createUser.model';
 
 export default function RegisterForm(){
     const [name, setName] = React.useState('');
@@ -23,7 +23,7 @@ export default function RegisterForm(){
 
     function handleSubmit(e:FormEvent<HTMLFormElement>){
         e.preventDefault();
-        const newUser: IUser = {name,lastName,phone,typeId,email,password};       
+        const newUser: IcreateNewUserAccountRequest = {name,lastName,phone,typeId,email,password};       
        registerHandle(newUser);
     }
 

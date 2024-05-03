@@ -1,6 +1,7 @@
-import { IUser } from "./newUser.model";
+import { InewUserRequest } from "./createUser.model";
 
-export interface Iincident {
+// reuqest
+export interface IincidentRequest {
   createAt: string;
   details: string;
   imageUrl: string;
@@ -10,5 +11,5 @@ export interface Iincident {
   type: string;
   updateAt: string;
 
-  user:IUser;
+  user:InewUserRequest;
 }

@@ -1,7 +1,7 @@
 import { FaCircle, FaUser } from "react-icons/fa";
 import { useIncidentStore } from "../../stores/store";
 import { navigate } from "wouter/use-browser-location";
-import { Iincident } from "../../models/Incidents";
+import { Iincident } from "../../models/request/getIncident.model";
 
 interface IncidenTableProps {
   indicents: Iincident[];

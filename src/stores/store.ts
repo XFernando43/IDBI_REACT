@@ -1,15 +1,18 @@
 import { create } from "zustand";
-import { IUser } from "../models/newUser.model";
-import { Iincident } from "../models/Incidents";
+import { IincidentRequest } from "../models/request/getIncident.model";
 import axios from "axios";
 import { Incident } from "./Interfaces/Incident";
 import dayjs from "dayjs";
+import { InewUserRequest } from "../models/request/createUser.model";
 
 
 export const useIncidentStore = create<Incident>((set) => ({
-  incidents: [] as Iincident[],
-  user: {} as IUser,
-  incident: {} as Iincident,
+  
+  incidents: [] as IincidentRequest[],
+  user: {} as InewUserRequest,
+  
+  incident: {} as IincidentRequest,
+
   success:false,
   failed:false,
 
@@ -29,6 +32,7 @@ export const useIncidentStore = create<Incident>((set) => ({
         console.log("--> ",response.data);
         const data = response.data;
         set({incident:data});
+
       }).catch(()=>{
         
       })

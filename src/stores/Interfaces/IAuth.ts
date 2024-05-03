@@ -1,16 +1,13 @@
-import { IUser } from "../../models/newUser.model";
+import { IcreateNewUserAccountRequest } from "../../models/request/createUser.model";
 
-export interface User {
-
+// modelo del store
+export interface IAuth {
     token:string,
     succes:boolean,
     failed:boolean,
-
     Loggin:(email:string, password:string)=>Promise<void>;
-    Register:(user: IUser)=>Promise<void>;
-
+    Register:(user: IcreateNewUserAccountRequest)=>Promise<void>;
     verifyLoggin:()=> Boolean;
-
     hideSucces:()=>void;
     hideFailed:()=>void;
 }
