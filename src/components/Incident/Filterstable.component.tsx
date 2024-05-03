@@ -7,8 +7,6 @@ export default function FiltersTable() {
   const [ DateFilterStart, setDateFilterStart] = React.useState("");
   const [DateFilterEnd, setDateFilterEnd] = React.useState("");
   const [StateFilter, setStateFilter] = React.useState("");
-
-  // const incidents = useIncidentStore(state => state.incidents);
   const orderByDate = useIncidentStore(state => state.orderByDate);
   const orderByStatus = useIncidentStore(state => state.orderByState);
 
@@ -26,7 +24,7 @@ export default function FiltersTable() {
   }
 
   return (
-    <div className="p-3 flex flex-col sm:flex-col md:flex-row lg:flex-row xl:flex-row 2xl:flex-row gap-2 font-semibold bg-slate-200">
+    <div className="p-3 border-b-2 border-slate-700 flex flex-col sm:flex-col md:flex-row lg:flex-row xl:flex-row 2xl:flex-row gap-2 font-semibold bg-slate-200">
       <Col md={4}>
         <Form.Group as={Row}>
           <Form.Label column md={3}>

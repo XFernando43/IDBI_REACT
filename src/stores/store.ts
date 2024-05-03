@@ -35,7 +35,6 @@ export const useIncidentStore = create<Incident>((set) => ({
 
         return incidentDay >= startDay && incidentDay <= endDay;
       });
-
       return { incidents: filteredIncidents };
     });
   },
