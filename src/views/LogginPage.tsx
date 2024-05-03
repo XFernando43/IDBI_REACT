@@ -2,7 +2,7 @@ import { Button, Form, Toast } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
 import { Link } from 'wouter';
 import React, { FormEvent } from 'react';
-import { login } from '../Services/AuthServices';
+import { useAuthStore } from '../stores/authStore';
 
 
 
@@ -11,18 +11,19 @@ export default function LoginPage() {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
-    const [showSuccessToast, setShowSuccessToast] = React.useState(false);
-    const [showErrorToast, setShowErrorToast] = React.useState(false);
+
+
+    const LoginHandle = useAuthStore(state=>state.Loggin);
+    const success = useAuthStore(state=> state.succes);
+    const failed = useAuthStore(state=> state.failed);
+
+    const hideSuccess = useAuthStore(state=> state.hideSucces);
+    const hideFailed = useAuthStore(state=> state.hideFailed);
+
 
     function handleSubmit(e:FormEvent<HTMLFormElement>){
         e.preventDefault(); 
-        login(email,password).then((data)=>{
-            setShowSuccessToast(true);
-            localStorage.setItem('token',data.data.token);
-        }).catch((error)=>{
-            console.log(error);
-            setShowErrorToast(true);
-        });
+        LoginHandle(email,password);
     }
   
 
@@ -56,7 +57,7 @@ export default function LoginPage() {
                 </footer>
             </div>
 
-            <Toast show={showSuccessToast} onClose={() => setShowSuccessToast(false)} bg="primary" style={{position:'absolute', left: '58%', bottom:'83%'}}>
+            <Toast show={success} onClose={() => hideSuccess()} bg="primary" style={{position:'absolute', left: '58%', bottom:'83%'}}>
                     <Toast.Header>
                         <strong className="me-auto ">Success</strong>
                     </Toast.Header>
@@ -67,7 +68,7 @@ export default function LoginPage() {
                     </Toast.Body>
                 </Toast>
             
-                <Toast show={showErrorToast} onClose={() => setShowErrorToast(false)} bg="danger" style={{position:'absolute', left: '58%', bottom:'83%'}} >
+                <Toast show={failed} onClose={() => hideFailed()} bg="danger" style={{position:'absolute', left: '58%', bottom:'83%'}} >
                     <Toast.Header>
                         <strong className="me-auto">Error</strong>
                     </Toast.Header>

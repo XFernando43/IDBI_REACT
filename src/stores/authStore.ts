@@ -17,12 +17,14 @@ export const useAuthStore = create<User>((set) => ({
   failed: false,
   Loggin: async (email: string, password: string) => {
     try {
-      const response = await axios.post(`${baseUrl}/Loggin`, {
-        email,
-        password,
+      await axios.post(`${baseUrl}/account/Loggin`, {email,password,}).then((data)=>{
+        // console.log(data.data.token);
+        set({ succes: true });
+        set({ token:data.data.token});
+        localStorage.setItem('token',data.data.token);
+      }).catch(()=>{
+        set({ failed: true });
       });
-      const data = response.data;
-      set({ token: data });
     } catch (error) {
       console.error("Error fetching incidents:", error);
     }
