@@ -77,7 +77,6 @@ export default function IncidenTable(props: IncidenTableProps) {
               </td>
 
               <td className="Slabo text-sm text-normal px-6 py-4">
-                Ocurrio Un problema en la habitación numero 203
                 {incident.subject}
               </td>
               <td className="Slabo text-sm text-normal px-6 py-4 text-start">

@@ -18,6 +18,8 @@ export const useIncidentStore = create<Incident>((set) => ({
   fetchIncidents: async () => {
     try {
 
+      set({incidentsResponse:[]});
+
       const token = localStorage.getItem('token');
 
       const config = {

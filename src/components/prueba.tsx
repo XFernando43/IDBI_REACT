@@ -19,7 +19,7 @@ export default function createIncidetForm() {
     
     if (image) {
       if(id){
-        submitIncident(id,subject, details, type, image);
+        submitIncident(id,subject,type, details, image);
       }
     } else {
       console.error("No se ha seleccionado una imagen.");
