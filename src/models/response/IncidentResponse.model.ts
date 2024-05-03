@@ -1,8 +1,7 @@
 import { IUserResponse } from "./user.response.model";
 
 export interface IincidentReponse{
-    user:IUserResponse;
-    subject    :string;
+    subject:string;
     imageUrl:string;
     type:string;
     details:string;
@@ -10,5 +9,6 @@ export interface IincidentReponse{
     createAt:string;
     updateAt:string;
     incidentId:string;
-
+    
+    user:IUserResponse;
 }

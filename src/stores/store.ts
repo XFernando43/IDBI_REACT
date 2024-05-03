@@ -28,12 +28,9 @@ export const useIncidentStore = create<Incident>((set) => ({
   fetchIncidentById:async(incidentId:string)=>{
     try {
       await axios.get(`${import.meta.env.VITE_API_URL_BASE}/incident/${incidentId}`).then((response)=>{
-        console.log("--> ",response.data);
         const data = response.data;
         set({incident:data});
-
       }).catch(()=>{
-        
       })
     } catch (error) {
       console.error("Error fetching incidents:", error);
