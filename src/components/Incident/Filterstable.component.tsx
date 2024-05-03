@@ -1,14 +1,26 @@
 import React from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
+import { useIncidentStore } from "../../stores/store";
 
 export default function FiltersTable() {
   const [ DateFilterStart, setDateFilterStart] = React.useState("");
   const [DateFilterEnd, setDateFilterEnd] = React.useState("");
   const [StateFilter, setStateFilter] = React.useState("");
 
+  const incidents = useIncidentStore(state => state.incidents);
+  const orderByDate = useIncidentStore(state => state.orderByDate);
+  const orderByStatus = useIncidentStore(state => state.orderByState);
+
+
   function showAll(){
     console.log(DateFilterStart,DateFilterEnd,StateFilter);
+  }
+
+  function Test(){
+    console.log(incidents);
+    orderByStatus("PROCESO");
+    console.log(incidents);
   }
 
   return (
@@ -43,9 +55,9 @@ export default function FiltersTable() {
           <Col md={9}>
             <Form.Control as="select" value={StateFilter} onChange={(e)=>{setStateFilter(e.target.value)}}>
               <option value="">Todos</option>
-              <option value="Abierto">Abierto</option>
-              <option value="Cerrado">Cerrado</option>
-              <option value="Proceso">Proceso</option>
+              <option value="OPEN">OPEN</option>
+              <option value="CLOSE">CLOSE</option>
+              <option value="PROCESS">PROCESS</option>
             </Form.Control>
           </Col>
         </Form.Group>
@@ -56,7 +68,7 @@ export default function FiltersTable() {
           variant="primary"
           type="submit"
           className="d-flex flex-row align-items-center gap-2"
-          onClick={showAll}
+          onClick={Test}
         >
           <FaSearch />
           <span style={{ fontWeight: "bold" }}>Buscar</span>

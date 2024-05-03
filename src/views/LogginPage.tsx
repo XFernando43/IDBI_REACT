@@ -11,15 +11,12 @@ export default function LoginPage() {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
-
-
     const LoginHandle = useAuthStore(state=>state.Loggin);
     const success = useAuthStore(state=> state.succes);
     const failed = useAuthStore(state=> state.failed);
 
     const hideSuccess = useAuthStore(state=> state.hideSucces);
     const hideFailed = useAuthStore(state=> state.hideFailed);
-
 
     function handleSubmit(e:FormEvent<HTMLFormElement>){
         e.preventDefault(); 
