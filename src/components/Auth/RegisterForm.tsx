@@ -65,7 +65,7 @@ export default function RegisterForm(){
 
 
 
-                <Toast show={success} onClose={() => hideSuccess()} bg="primary" style={{position:'absolute', left: '58%', bottom:'83%'}}>
+                <Toast show={success} autohide delay={2000} onClose={() => hideSuccess()} bg="primary" style={{position:'absolute', left: '58%', bottom:'83%'}}>
                     <Toast.Header>
                         <strong className="me-auto ">Success</strong>
                     </Toast.Header>
@@ -76,7 +76,7 @@ export default function RegisterForm(){
                     </Toast.Body>
                 </Toast>
             
-                <Toast show={failed} onClose={() => hideFailed()} bg="danger" style={{position:'absolute', left: '58%', bottom:'83%'}} >
+                <Toast show={failed} autohide delay={2000} onClose={() => hideFailed()} bg="danger" style={{position:'absolute', left: '58%', bottom:'83%'}} >
                     <Toast.Header>
                         <strong className="me-auto">Error</strong>
                     </Toast.Header>
