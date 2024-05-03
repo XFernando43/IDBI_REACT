@@ -5,7 +5,7 @@ import CardReview from "../components/reviews/CardReviw.component";
 export default function ReviewIncidentView() {
     
     return (
-        <div className=" grid grid-rows-2 justify-center items-center">
+        <div className="p-4">
             <CardReview/>
             <CommentList/>
         </div>

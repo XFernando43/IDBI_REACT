@@ -5,26 +5,45 @@ import { ICommentResponse } from "../models/response/commentResponse.model";
 import axios from "axios";
 
 export const useCommentStore = create<IComment>((set) => ({
-   commentRequest: {} as ICommentRequest,
-   commentsResponse: [] as ICommentResponse[],  
-   getCommentListByIncident: async (id:string)=>{
-    set({commentsResponse:[]})
+  commentRequest: {} as ICommentRequest,
+  commentsResponse: [] as ICommentResponse[],
+
+  getCommentListByIncident: async (id: string) => {
+    set({ commentsResponse: [] });
     try {
-        await axios.get(`${import.meta.env.VITE_API_URL_BASE}/comments/obtenerPorIncidentes/${id}`).then((data)=>{
-          set({commentsResponse:data.data});  
+      await axios
+        .get(
+          `${
+            import.meta.env.VITE_API_URL_BASE
+          }/comments/obtenerPorIncidentes/${id}`
+        )
+        .then((data) => {
+          set({ commentsResponse: data.data });
         });
-      } catch (error) {
-        console.error("Error fetching incidents:", error);
-      }
-   },
-   PostComment: async()=>{
-    try{
-        await axios.post(`${import.meta.env.VITE_API_URL_BASE}/comments`).then((data)=>{
-            console.log("--> ", data);  
-            set({ commentsResponse:data.data });
-        });
-    }catch(error){
-        
+    } catch (error) {
+      console.error("Error fetching incidents:", error);
     }
-   }
+  },
+
+  PostComment: async (text: string, incidentID:number, userId:number) => {
+    try {
+      const newComment: ICommentRequest = {
+        userId: userId,
+        incidentID: incidentID,
+        content: text,
+      };
+      await axios.post(
+        `${import.meta.env.VITE_API_URL_BASE}/comments`,
+        newComment
+      );
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL_BASE}/comments/obtenerPorIncidentes/${
+          newComment.incidentID
+        }`
+      );
+      set((state) => ({ ...state, commentsResponse: data }));
+    } catch (error) {
+      console.error("Error posting comment:", error);
+    }
+  },
 }));
