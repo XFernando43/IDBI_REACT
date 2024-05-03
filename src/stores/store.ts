@@ -92,10 +92,10 @@ export const useIncidentStore = create<Incident>((set) => ({
     return formattedDate;
   },
 
-  submitIncident: async(subject:string,type:string,details:string,image:File) => {
+  submitIncident: async(userId:string,subject:string,type:string,details:string,image:File) => {
     try {
       const formData = new FormData();
-      formData.append('userId', '1');
+      formData.append('userId', userId);
       formData.append('subject', subject);
       formData.append('type', type);
       formData.append('details', details);

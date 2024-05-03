@@ -15,8 +15,12 @@ export default function createIncidetForm() {
   }
   function submitHandle(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const id = localStorage.getItem("userId");
+    
     if (image) {
-      submitIncident(subject, details, type, image);
+      if(id){
+        submitIncident(id,subject, details, type, image);
+      }
     } else {
       console.error("No se ha seleccionado una imagen.");
     }

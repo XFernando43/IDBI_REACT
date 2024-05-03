@@ -17,8 +17,8 @@ export default function CommentList(){
   }, []);
 
   return (
-    <div>
-      <h2>Comentarios</h2>
+    <div className="flex flex-col items-start gap-5">
+      <h2 className="Slabo font-semibold text-2xl">Comentarios</h2>
       <ListGroup>
         {comments.map((comment, index) => (
           <ListGroup.Item key={index}>

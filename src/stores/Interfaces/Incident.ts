@@ -20,6 +20,6 @@ export interface Incident {
   
   formatDay:(date:string) => string;
 
-  submitIncident:(subject:string,type:string,details:string,image:File)=> Promise<void>;
+  submitIncident:(userId:string,subject:string,type:string,details:string,image:File)=> Promise<void>;
   
 }
