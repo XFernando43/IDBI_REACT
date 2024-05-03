@@ -1,15 +1,18 @@
 import React from "react";
-import { getIncidents } from "../../Services/IncidentsService";
 import { FaCircle, FaUser } from "react-icons/fa";
-import { Iincident } from "../../models/Incidents";
+import { useIncidentStore } from "../../stores/store";
+
 export default function IncidenTable() {
-  const [Incidents, setIncidents] = React.useState<Iincident[]>([]);
+  const fetchIncidents = useIncidentStore(state=> state.fetchIncidents);
+  const _Incidents = useIncidentStore(state=> state.incidents);
 
   React.useEffect(() => {
-    getIncidents().then((data) => {
-      setIncidents(data);
-    });
-  }, []);
+    fetchIncidents();
+  },);
+
+
+
+
 
   return (
     <>
@@ -41,7 +44,7 @@ export default function IncidenTable() {
           </tr>
         </thead>
         <tbody className="border-2 text-center text-gray-900">
-          {Incidents.map((incident, index) => (
+          {_Incidents.map((incident, index) => (
             <tr key={index} className="border-b-4 hover:bg-blue-200">
               <td className="px-14">
                 <FaCircle className="text-red-500 text-5xl" />
@@ -76,7 +79,6 @@ export default function IncidenTable() {
           ))}
 
         </tbody>
-
       </table>
     </>
   );
