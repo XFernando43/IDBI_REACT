@@ -9,5 +9,7 @@ export interface Incident {
   orderByDate: (startDate: Date, endDate: Date) => void;
   orderByState: (state:string) => void;
 
+  formatDay:(date:string) => string;
+
   
 }

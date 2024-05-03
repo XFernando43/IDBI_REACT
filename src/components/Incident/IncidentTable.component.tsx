@@ -5,6 +5,7 @@ import { useIncidentStore } from "../../stores/store";
 export default function IncidenTable() {
   const fetchIncidents = useIncidentStore(state=> state.fetchIncidents);
   const _Incidents = useIncidentStore(state=> state.incidents);
+  let formatDate = useIncidentStore(state=>state.formatDay);
 
   React.useEffect(() => {
     fetchIncidents();
@@ -72,9 +73,11 @@ export default function IncidenTable() {
               </td>
               <td className="Slabo text-sm text-normal px-6 py-4">
                 
-                {/* {incident.user.phone} */}
-                {/* {JSON.stringify(incident)} */}
-                {incident.createAt}
+                {
+                  
+                  formatDate(incident.createAt)
+                  
+                }
 
               </td>
             </tr>

@@ -3,6 +3,7 @@ import { IUser } from "../models/newUser.model";
 import { Iincident } from "../models/Incidents";
 import axios from "axios";
 import { Incident } from "./Interfaces/Incident";
+import dayjs from 'dayjs';
 
 const baseUrl = "http://localhost:3000";
 
@@ -44,6 +45,13 @@ export const useIncidentStore = create<Incident>((set) => ({
       });
       return { incidents: sortedIncidents };
     });
+  },
+  formatDay:(date:string)=>{
+    const parsedDate = dayjs(date);
+
+    const formattedDate = parsedDate.format('YYYY-MM-DD HH:mm:ss');
+
+    return formattedDate;
   }
   
 }));
