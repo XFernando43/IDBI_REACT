@@ -4,10 +4,7 @@ import { Iincident } from "../models/Incidents";
 import axios from "axios";
 import { Incident } from "./Interfaces/Incident";
 import dayjs from "dayjs";
-import { newIncident } from "../models/newIncident.model";
-
 const baseUrl = "http://localhost:3000";
-
 export const useIncidentStore = create<Incident>((set) => ({
   incidents: [] as Iincident[],
   user: {} as IUser,
