@@ -1,8 +1,8 @@
 import React, { FormEvent } from 'react';
 import { Button, Form, Toast } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
-import { registerNewUser } from '../Services/AuthServices';
 import { IUser } from '../models/newUser.model';
+import { useAuthStore } from '../stores/authStore';
 
 export default function RegisterPage() {
     const [name, setName] = React.useState('');
@@ -12,8 +12,15 @@ export default function RegisterPage() {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
 
-    const [showSuccessToast, setShowSuccessToast] = React.useState(false);
-    const [showErrorToast, setShowErrorToast] = React.useState(false);
+
+    const registerHandle = useAuthStore(state=>state.Register);
+    const success = useAuthStore(state=> state.succes);
+    const failed = useAuthStore(state=> state.failed);
+    
+    const hideSuccess = useAuthStore(state=> state.hideSucces);
+    const hideFailed = useAuthStore(state=> state.hideFailed);
+
+
 
     function handleSubmit(e:FormEvent<HTMLFormElement>){
         e.preventDefault();
@@ -27,17 +34,13 @@ export default function RegisterPage() {
             password
         };
 
-        registerNewUser(newUser)
-        .then((response) => {
-          console.log(response.status);
-          if (response.status === 201) {
-            setShowSuccessToast(true);
-          }
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-          setShowErrorToast(true);
-        });
+       
+
+        registerHandle(newUser);
+
+
+
+
     }
     
     return (
@@ -79,7 +82,7 @@ export default function RegisterPage() {
 
 
 
-                <Toast show={showSuccessToast} onClose={() => setShowSuccessToast(false)} bg="primary" style={{position:'absolute', left: '58%', bottom:'83%'}}>
+                <Toast show={success} onClose={() => hideSuccess()} bg="primary" style={{position:'absolute', left: '58%', bottom:'83%'}}>
                     <Toast.Header>
                         <strong className="me-auto ">Success</strong>
                     </Toast.Header>
@@ -90,7 +93,7 @@ export default function RegisterPage() {
                     </Toast.Body>
                 </Toast>
             
-                <Toast show={showErrorToast} onClose={() => setShowErrorToast(false)} bg="danger" style={{position:'absolute', left: '58%', bottom:'83%'}} >
+                <Toast show={failed} onClose={() => hideFailed()} bg="danger" style={{position:'absolute', left: '58%', bottom:'83%'}} >
                     <Toast.Header>
                         <strong className="me-auto">Error</strong>
                     </Toast.Header>

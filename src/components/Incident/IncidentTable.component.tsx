@@ -8,7 +8,7 @@ export default function IncidenTable() {
 
   React.useEffect(() => {
     fetchIncidents();
-  },);
+  },[]);
 
 
 

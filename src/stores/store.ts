@@ -2,16 +2,10 @@ import { create } from "zustand";
 import { IUser } from "../models/newUser.model";
 import { Iincident } from "../models/Incidents";
 import axios from "axios";
+import { Incident } from "./Interfaces/Incident";
 
 const baseUrl = "http://localhost:3000";
 
-
-interface Incident {
-  incidents: Iincident[];
-  user: IUser;
-
-  fetchIncidents:() => Promise<void>;
-}
 
 
 export const useIncidentStore = create<Incident>((set) => ({
