@@ -7,32 +7,34 @@ export default function IncidentsState() {
         <span className="Slabo">Estado </span>
 
         <div className="flex flex-row gap-2 justify-center items-center">
-          <FaCircle style={{ color: "orange" }} />
+          <FaCircle className=" text-green-500" />
           <label htmlFor="progress" className="Slabo ">
-            En Progreso
+            Open
           </label>
         </div>
 
         <div className="flex flex-row gap-2 justify-center items-center">
-          <FaCircle style={{ color: "blue" }} />
+          <FaCircle className=" text-blue-800"/>
           <label htmlFor="progress" className="Slabo ">
-            Preparado
+            Process
           </label>
         </div>
 
         <div className="flex flex-row gap-2 justify-center items-center">
-          <FaCircle style={{ color: "aqua" }} />
+          <FaCircle className=" text-orange-300" />
           <label htmlFor="complete" className="Slabo State-Design">
-            Completado
+            Close
           </label>
         </div>
 
         <div className="flex flex-row gap-2 justify-center items-center">
-          <FaCircle style={{ color: "red" }} />
+          <FaCircle className=" text-red-500" />
           <label htmlFor="error" className="Slabo State-Design">
             Error
           </label>
         </div>
+
+
       </div>
     </div>
   );
