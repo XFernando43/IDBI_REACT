@@ -14,13 +14,28 @@ export const useIncidentStore = create<Incident>((set) => ({
 
   fetchIncidents: async () => {
     try {
-      const response = await axios.get(`${baseUrl}/incident`);
-      const data = response.data;
-      set({ incidents: data });
+      await axios.get(`${baseUrl}/incident`).then((data)=>{
+        set({ incidents: data.data });
+      });
     } catch (error) {
       console.error("Error fetching incidents:", error);
     }
   },
+
+  fetchIncidentById:async(incidentId:string)=>{
+    try {
+      await axios.get(`${baseUrl}/incident/${incidentId}`).then((response)=>{
+        console.log("--> ",response.data);
+        const data = response.data;
+        set({incident:data});
+      }).catch(()=>{
+        
+      })
+    } catch (error) {
+      console.error("Error fetching incidents:", error);
+    }
+  },
+
   orderByDate: async (startDate: Date, endDate: Date) => {
     set((state) => {
       if (state.incidents.length === 0) {
@@ -51,6 +66,7 @@ export const useIncidentStore = create<Incident>((set) => ({
       return { incidents: sortedIncidents };
     });
   },
+
   formatDay: (date: string) => {
     const parsedDate = dayjs(date);
     const formattedDate = parsedDate.format("YYYY-MM-DD HH:mm:ss");

@@ -1,11 +1,16 @@
 import React from "react";
 import { FaCircle, FaUser } from "react-icons/fa";
 import { useIncidentStore } from "../../stores/store";
+import { navigate } from "wouter/use-browser-location";
 
 export default function IncidenTable() {
   const fetchIncidents = useIncidentStore((state) => state.fetchIncidents);
   const _Incidents = useIncidentStore((state) => state.incidents);
   let formatDate = useIncidentStore((state) => state.formatDay);
+
+  function redirect(id:string){
+    navigate(`/Incidet/${id}`);
+  }
 
   React.useEffect(() => {
     fetchIncidents();
@@ -13,7 +18,8 @@ export default function IncidenTable() {
 
   return (
     <>
-      <table className="sm:max-w-sm md:max-w-lg lg:max-w-xl xl:max-w-full">
+      <table className=" table-auto overflow-y-auto sm:max-w-sm md:max-w-lg lg:max-w-xl xl:max-w-full">
+      {/* style={{height:'400px'}} */}
         <thead className="text-sm font-semibold uppercase tracking-wider">
           <tr>
             <th className="hover:bg-blue-300 Slabo text-sm text-black font-mono px-6 py-3 border-r border-slate-700">
@@ -47,7 +53,7 @@ export default function IncidenTable() {
         </thead>
         <tbody className="text-center text-gray-900">
           {_Incidents.map((incident, index) => (
-            <tr key={index} className="hover:bg-blue-200">
+            <tr key={index} className="hover:bg-blue-200" onClick={()=>{redirect(incident.incidentId.toString())}} >
               <td className="px-14">
                 
                 {incident.status === "OPEN" ? (
@@ -86,7 +92,7 @@ export default function IncidenTable() {
                 />
               </td>
               <td className="flex flex-row justify-center items-center px-6 py-16">
-                <FaUser className=" text-blue-500 text-5xl" />
+                <FaUser className=" text-blue-500 text-6xl" />
                 {incident.user.name} {incident.user.lastName}
               </td>
               <td className="Slabo text-sm text-normal px-6 py-4">

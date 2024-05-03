@@ -9,7 +9,8 @@ export interface Incident {
   failed:Boolean;
 
   fetchIncidents: () => Promise<void>;
-  
+  fetchIncidentById:(incidentId:string)=>Promise<void>;
+
   orderByDate: (startDate: Date, endDate: Date) => Promise<void>;
   orderByState: (state:string) => void;
   

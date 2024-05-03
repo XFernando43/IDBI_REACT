@@ -3,6 +3,7 @@ import LogginPage from "./views/LogginPage"
 import RegisterPage from "./views/RegisterPage"
 import HomePage from "./views/HomePage"
 import CreateIncidentPage from "./views/createIncident"
+import ReviewIncidentView from "./views/reviewIncident"
 
 function App() {
   
@@ -12,6 +13,7 @@ function App() {
         <Route path="/login" component={LogginPage} />
         <Route path="/register" component={RegisterPage} />
         <Route path="/createIncident" component={CreateIncidentPage} />
+        <Route path="/Incidet/:id" component={ReviewIncidentView} />
     </Router>
   )
 }
