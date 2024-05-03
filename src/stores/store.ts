@@ -4,12 +4,17 @@ import { Iincident } from "../models/Incidents";
 import axios from "axios";
 import { Incident } from "./Interfaces/Incident";
 import dayjs from "dayjs";
+import { newIncident } from "../models/newIncident.model";
 
 const baseUrl = "http://localhost:3000";
 
 export const useIncidentStore = create<Incident>((set) => ({
   incidents: [] as Iincident[],
   user: {} as IUser,
+  incident: {} as Iincident,
+  success:false,
+  failed:false,
+
   fetchIncidents: async () => {
     try {
       const response = await axios.get(`${baseUrl}/incident`);
@@ -54,4 +59,30 @@ export const useIncidentStore = create<Incident>((set) => ({
     const formattedDate = parsedDate.format("YYYY-MM-DD HH:mm:ss");
     return formattedDate;
   },
+
+  submitIncident: async(subject:string,type:string,details:string,image:File) => {
+    try {
+      const formData = new FormData();
+      formData.append('userId', '1');
+      formData.append('subject', subject);
+      formData.append('type', type);
+      formData.append('details', details);
+      formData.append('status', 'OPEN');
+      formData.append('imageUrl', image, image.name);
+  
+      await axios.post('http://localhost:3000/incident', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(()=>{
+        console.log("Nuevo incidente subido");
+      });
+  
+      
+    } catch (error) {
+      console.error("Error al subir incidente:", error);
+    }
+  }
+
+
 }));

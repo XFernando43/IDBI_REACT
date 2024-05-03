@@ -4,6 +4,9 @@ import { IUser } from "../../models/newUser.model";
 export interface Incident {
   incidents: Iincident[];
   user: IUser;
+  incident:Iincident;
+  success:Boolean;
+  failed:Boolean;
 
   fetchIncidents: () => Promise<void>;
   
@@ -12,5 +15,6 @@ export interface Incident {
   
   formatDay:(date:string) => string;
 
+  submitIncident:(subject:string,type:string,details:string,image:File)=> Promise<void>;
   
 }
