@@ -1,10 +1,12 @@
-import { IincidentRequest } from "../../models/request/getIncident.model";
-import { InewUserRequest } from "../../models/request/newUser.model";
+import { IincidentReponse } from "../../models/response/IncidentResponse.model";
+import { IUserResponse } from "../../models/response/user.response.model";
 
 export interface Incident {
-  incidents: IincidentRequest[];
-  user: InewUserRequest;
-  incident:IincidentRequest;
+  incidentsResponse: IincidentReponse[];
+  userResponse: IUserResponse;
+  incident:IincidentReponse;
+  
+
   success:Boolean;
   failed:Boolean;
 

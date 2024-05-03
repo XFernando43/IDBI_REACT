@@ -1,10 +1,10 @@
 import { FaCircle, FaUser } from "react-icons/fa";
 import { useIncidentStore } from "../../stores/store";
 import { navigate } from "wouter/use-browser-location";
-import { Iincident } from "../../models/request/getIncident.model";
+import { IincidentReponse } from "../../models/response/IncidentResponse.model";
 
 interface IncidenTableProps {
-  indicents: Iincident[];
+  indicents: IincidentReponse[];
 }
 
 export default function IncidenTable(props: IncidenTableProps) {

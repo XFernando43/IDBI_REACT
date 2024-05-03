@@ -5,7 +5,7 @@ import FiltersTable from "../components/Incident/Filterstable.component";
 import { useIncidentStore } from "../stores/store";
 import React from "react";
 export default function HomePage() {
-  const Incidents = useIncidentStore(state=>state.incidents);
+  const Incidents = useIncidentStore(state=>state.incidentsResponse);
   const fetchIncidents = useIncidentStore(state=>state.fetchIncidents);
   
 

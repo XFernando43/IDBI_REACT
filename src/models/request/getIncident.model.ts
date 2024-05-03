@@ -1,4 +1,4 @@
-import { InewUserRequest } from "./createUser.model";
+// import { InewUserRequest } from "./createUser.model";
 
 // reuqest
 export interface IincidentRequest {
@@ -11,5 +11,5 @@ export interface IincidentRequest {
   type: string;
   updateAt: string;
 
-  user:InewUserRequest;
+  // user:InewUserRequest;
 }

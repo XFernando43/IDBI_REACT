@@ -1,17 +1,16 @@
 import { create } from "zustand";
-import { IincidentRequest } from "../models/request/getIncident.model";
 import axios from "axios";
 import { Incident } from "./Interfaces/Incident";
 import dayjs from "dayjs";
-import { InewUserRequest } from "../models/request/createUser.model";
+import { IUserResponse } from "../models/response/user.response.model";
+import { IincidentReponse } from "../models/response/IncidentResponse.model";
 
 
 export const useIncidentStore = create<Incident>((set) => ({
   
-  incidents: [] as IincidentRequest[],
-  user: {} as InewUserRequest,
-  
-  incident: {} as IincidentRequest,
+  incidentsResponse: [] as IincidentReponse[],
+  userResponse: {} as IUserResponse,
+  incident: {} as IincidentReponse,
 
   success:false,
   failed:false,
@@ -19,7 +18,7 @@ export const useIncidentStore = create<Incident>((set) => ({
   fetchIncidents: async () => {
     try {
       await axios.get(`${import.meta.env.VITE_API_URL_BASE}/incident`).then((data)=>{
-        set({ incidents: data.data });
+        set({ incidentsResponse: data.data });
       });
     } catch (error) {
       console.error("Error fetching incidents:", error);
@@ -47,7 +46,7 @@ export const useIncidentStore = create<Incident>((set) => ({
       await axios.get(`${import.meta.env.VITE_API_URL_BASE}/incident/GetIncidentById/${userId}`).then((response)=>{
         console.log("--> users ",response.data);
         const data = response.data;
-        set({incidents:data});
+        set({incidentsResponse:data});
       }).catch(()=>{
         
       })
@@ -58,10 +57,10 @@ export const useIncidentStore = create<Incident>((set) => ({
 
   orderByDate: async (startDate: Date, endDate: Date) => {
     set((state) => {
-      if (state.incidents.length === 0) {
+      if (state.incidentsResponse.length === 0) {
         state.fetchIncidents();
       }
-      const filteredIncidents = state.incidents.filter((incident) => {
+      const filteredIncidents = state.incidentsResponse.filter((incident) => {
         const incidentDate = dayjs(incident.createAt);
         const startDateParsed = dayjs(startDate);
         const endDateParsed = dayjs(endDate);
@@ -72,18 +71,18 @@ export const useIncidentStore = create<Incident>((set) => ({
 
         return incidentDay >= startDay && incidentDay <= endDay;
       });
-      return { incidents: filteredIncidents };
+      return { incidentsResponse: filteredIncidents };
     });
   },
 
   orderByState: (status: string) => {
     set((state) => {
-      const sortedIncidents = state.incidents.slice().sort((a, b) => {
+      const sortedIncidents = state.incidentsResponse.slice().sort((a, b) => {
         if (a.status == status) return -1;
         if (b.status !== status) return 1;
         return 0;
       });
-      return { incidents: sortedIncidents };
+      return { incidentsResponse: sortedIncidents };
     });
   },
 
