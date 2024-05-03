@@ -17,7 +17,16 @@ export const useIncidentStore = create<Incident>((set) => ({
 
   fetchIncidents: async () => {
     try {
-      await axios.get(`${import.meta.env.VITE_API_URL_BASE}/incident`).then((data)=>{
+
+      const token = localStorage.getItem('token');
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      await axios.get(`${import.meta.env.VITE_API_URL_BASE}/incident`,config).then((data)=>{
         set({ incidentsResponse: data.data });
       });
     } catch (error) {
@@ -27,11 +36,17 @@ export const useIncidentStore = create<Incident>((set) => ({
 
   fetchIncidentById:async(incidentId:string)=>{
     try {
-      await axios.get(`${import.meta.env.VITE_API_URL_BASE}/incident/${incidentId}`).then((response)=>{
-        const data = response.data;
-        set({incident:data});
-      }).catch(()=>{
-      })
+      const token = localStorage.getItem('token');
+      
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+    
+      const response = await axios.get(`${import.meta.env.VITE_API_URL_BASE}/incident/getIncident/${incidentId}`, config);
+      const data = response.data;
+      set({ incident: data });
     } catch (error) {
       console.error("Error fetching incidents:", error);
     }
@@ -39,8 +54,17 @@ export const useIncidentStore = create<Incident>((set) => ({
 
   fetchIncidentByUserId: async ()=>{
     try {
+
+      const token = localStorage.getItem('token');
+      
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+
       const userId = localStorage.getItem('userId');
-      await axios.get(`${import.meta.env.VITE_API_URL_BASE}/incident/GetIncidentById/${userId}`).then((response)=>{
+      await axios.get(`${import.meta.env.VITE_API_URL_BASE}/incident/GetIncidentById/${userId}`,config).then((response)=>{
         console.log("--> users ",response.data);
         const data = response.data;
         set({incidentsResponse:data});
@@ -104,7 +128,7 @@ export const useIncidentStore = create<Incident>((set) => ({
           'Content-Type': 'multipart/form-data'
         }
       }).then(()=>{
-        console.log("Nuevo incidente subido");
+        window.alert("submited")
       });
   
       

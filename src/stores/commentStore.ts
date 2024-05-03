@@ -11,11 +11,21 @@ export const useCommentStore = create<IComment>((set) => ({
   getCommentListByIncident: async (id: string) => {
     set({ commentsResponse: [] });
     try {
+
+      const token = localStorage.getItem('token');
+      
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
       await axios
         .get(
           `${
             import.meta.env.VITE_API_URL_BASE
-          }/comments/obtenerPorIncidentes/${id}`
+          }/comments/obtenerPorIncidentes/${id}`,config
+        
         )
         .then((data) => {
           set({ commentsResponse: data.data });
@@ -26,6 +36,8 @@ export const useCommentStore = create<IComment>((set) => ({
   },
 
   PostComment: async (text: string, incidentID:number, userId:number) => {
+    
+
     try {
       const newComment: ICommentRequest = {
         userId: userId,
@@ -45,5 +57,9 @@ export const useCommentStore = create<IComment>((set) => ({
     } catch (error) {
       console.error("Error posting comment:", error);
     }
+
+
+
+
   },
 }));

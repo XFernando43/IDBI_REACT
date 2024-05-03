@@ -37,7 +37,7 @@ export const useAuthStore = create<IAuth>((set) => ({
   Register: async (newUser: IcreateNewUserAccountRequest) => {
     try {
       await axios
-        .post(`${import.meta.env.VITE_API_URL_BASE}/account`, newUser)
+        .post(`${import.meta.env.VITE_API_URL_BASE}/account/register`, newUser)
         .then(() => {
           set({ succes: true });
         })
