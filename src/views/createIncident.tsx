@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useIncidentStore } from "../stores/store";
 import IncidenTable from "../components/Incident/IncidentTable.component";
@@ -10,6 +10,13 @@ function CreateIncidentReport() {
   const [image, setImage] = useState<File | null>(null);
   const submitIncident = useIncidentStore((state) => state.submitIncident);
   
+  const fetchIncidentByUserId = useIncidentStore(state=>state.fetchIncidentByUserId);
+  const Incidents = useIncidentStore(state=>state.incidents);
+
+  React.useEffect(()=>{
+    fetchIncidentByUserId("1");
+  },[])
+
   function onChange(e: any) {
     const file = e.target.files[0];
     setImage(file);
@@ -23,9 +30,11 @@ function CreateIncidentReport() {
     }
   }
 
+ 
+
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 relative">
-      <IncidenTable />
+      <IncidenTable title="d" indicents={Incidents} />
       <Container onSubmit={submitHandle}>
         <Row className="d-flex flex-col justify-content-center align-items-center">
           <Col md={5}>

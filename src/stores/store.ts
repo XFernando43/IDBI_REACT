@@ -36,6 +36,20 @@ export const useIncidentStore = create<Incident>((set) => ({
     }
   },
 
+  fetchIncidentByUserId: async (userId:string)=>{
+    try {
+      await axios.get(`${baseUrl}/incident/GetIncidentById/${userId}`).then((response)=>{
+        console.log("--> users ",response.data);
+        const data = response.data;
+        set({incident:data});
+      }).catch(()=>{
+        
+      })
+    } catch (error) {
+      console.error("Error fetching incidents:", error);
+    }
+  },
+
   orderByDate: async (startDate: Date, endDate: Date) => {
     set((state) => {
       if (state.incidents.length === 0) {

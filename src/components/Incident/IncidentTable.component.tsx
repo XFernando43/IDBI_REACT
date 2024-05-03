@@ -2,24 +2,33 @@ import React from "react";
 import { FaCircle, FaUser } from "react-icons/fa";
 import { useIncidentStore } from "../../stores/store";
 import { navigate } from "wouter/use-browser-location";
+import { Iincident } from "../../models/Incidents";
 
-export default function IncidenTable() {
-  const fetchIncidents = useIncidentStore((state) => state.fetchIncidents);
-  const _Incidents = useIncidentStore((state) => state.incidents);
+interface IncidenTableProps {
+  title: string;
+  indicents: Iincident[];
+}
+
+
+export default function IncidenTable(title:IncidenTableProps) {
+  // const fetchIncidents = useIncidentStore((state) => state.fetchIncidents);
+  // const _Incidents = useIncidentStore((state) => state.incidents);
   let formatDate = useIncidentStore((state) => state.formatDay);
 
   function redirect(id:string){
     navigate(`/Incidet/${id}`);
   }
 
-  React.useEffect(() => {
-    fetchIncidents();
-  }, []);
+  // React.useEffect(() => {
+  //   fetchIncidents();
+  // }, []);
 
   return (
-    <>
+    <div className="overflow-y-auto max-h-[800px]">
+
+      <h2>{title.title}</h2>
+
       <table className=" table-auto overflow-y-auto sm:max-w-sm md:max-w-lg lg:max-w-xl xl:max-w-full">
-      {/* style={{height:'400px'}} */}
         <thead className="text-sm font-semibold uppercase tracking-wider">
           <tr>
             <th className="hover:bg-blue-300 Slabo text-sm text-black font-mono px-6 py-3 border-r border-slate-700">
@@ -52,7 +61,7 @@ export default function IncidenTable() {
           </tr>
         </thead>
         <tbody className="text-center text-gray-900">
-          {_Incidents.map((incident, index) => (
+          {title.indicents.map((incident, index) => (
             <tr key={index} className="hover:bg-blue-200" onClick={()=>{redirect(incident.incidentId.toString())}} >
               <td className="px-14">
                 
@@ -102,6 +111,6 @@ export default function IncidenTable() {
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 }

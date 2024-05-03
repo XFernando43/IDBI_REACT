@@ -10,7 +10,7 @@ export default function FiltersTable() {
   const orderByDate = useIncidentStore(state => state.orderByDate);
   const orderByStatus = useIncidentStore(state => state.orderByState);
 
-  function Test(){
+  function submitHandle(){
     
     if(DateFilterStart !== "" && DateFilterEnd !== ""){
       const startDate = new Date(DateFilterStart);
@@ -68,7 +68,7 @@ export default function FiltersTable() {
           variant="primary"
           type="submit"
           className="d-flex flex-row align-items-center gap-2"
-          onClick={Test}
+          onClick={submitHandle}
         >
           <FaSearch />
           <span style={{ fontWeight: "bold" }}>Buscar</span>
