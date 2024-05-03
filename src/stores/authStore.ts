@@ -4,25 +4,24 @@ import { User } from "./Interfaces/user";
 import { IUser } from "../models/newUser.model";
 import { navigate } from 'wouter/use-browser-location';
 
-const baseUrl = "http://localhost:3000";
-
 export const useAuthStore = create<User>((set) => ({
-  name: "",
-  lastName: "",
-  phone: "",
-  typeId: 0,
-  email: "",
-  password: "",
   token: "",
   succes: false,
   failed: false,
   Loggin: async (email: string, password: string) => {
     try {
-      await axios.post(`${baseUrl}/account/Loggin`, {email,password,}).then((data)=>{
+      await axios.post(`${import.meta.env.VITE_API_URL_BASE}/account/Loggin`, {email,password,}).then((data)=>{
         set({ succes: true });
         set({ token:data.data.token});
         localStorage.setItem('token',data.data.token);
-        navigate('/home');
+        localStorage.setItem('TypeUser',data.data.account.user.userType.typeId);
+        
+        if(data.data.account.user.userType.typeId == 1){
+          navigate('/createIncident');
+        }else{
+          navigate('/home');
+        }
+
       }).catch(()=>{
         set({ failed: true });
       });
@@ -33,7 +32,7 @@ export const useAuthStore = create<User>((set) => ({
   Register: async (user: IUser) => {
     try {
       await axios
-        .post(`${baseUrl}/account`, user)
+        .post(`${import.meta.env.VITE_API_URL_BASE}/account`, user)
         .then(() => {
           set({ succes: true });
         })
@@ -43,6 +42,15 @@ export const useAuthStore = create<User>((set) => ({
         });
     } catch (error) {
       throw error;
+    }
+  },
+
+  verifyLoggin: ()=>{
+    if(localStorage.getItem('token') == null ){
+      navigate('/login');
+      return false;  
+    }else{
+      return true;
     }
   },
   hideSucces: () => {

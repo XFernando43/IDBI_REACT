@@ -1,32 +1,20 @@
-import React from "react";
 import { FaCircle, FaUser } from "react-icons/fa";
 import { useIncidentStore } from "../../stores/store";
 import { navigate } from "wouter/use-browser-location";
 import { Iincident } from "../../models/Incidents";
 
 interface IncidenTableProps {
-  title: string;
   indicents: Iincident[];
 }
 
 
-export default function IncidenTable(title:IncidenTableProps) {
-  // const fetchIncidents = useIncidentStore((state) => state.fetchIncidents);
-  // const _Incidents = useIncidentStore((state) => state.incidents);
+export default function IncidenTable(props:IncidenTableProps) {
+  
   let formatDate = useIncidentStore((state) => state.formatDay);
-
-  function redirect(id:string){
-    navigate(`/Incidet/${id}`);
-  }
-
-  // React.useEffect(() => {
-  //   fetchIncidents();
-  // }, []);
+  function redirect(id:string){ navigate(`/Incidet/${id}`);}
 
   return (
     <div className="overflow-y-auto max-h-[800px]">
-
-      <h2>{title.title}</h2>
 
       <table className=" table-auto overflow-y-auto sm:max-w-sm md:max-w-lg lg:max-w-xl xl:max-w-full">
         <thead className="text-sm font-semibold uppercase tracking-wider">
@@ -61,7 +49,7 @@ export default function IncidenTable(title:IncidenTableProps) {
           </tr>
         </thead>
         <tbody className="text-center text-gray-900">
-          {title.indicents.map((incident, index) => (
+          {props.indicents.map((incident, index) => (
             <tr key={index} className="hover:bg-blue-200" onClick={()=>{redirect(incident.incidentId.toString())}} >
               <td className="px-14">
                 
@@ -74,9 +62,7 @@ export default function IncidenTable(title:IncidenTableProps) {
                 ) : incident.status === "ERROR" ? (
                   <FaCircle className="text-red-500 text-5xl" />
                 ) 
-                
                 : null}
-
               </td>
               <td className="Slabo font-semibold text-lg text-normal px-6 py-4">
                 {incident.status}
@@ -102,7 +88,7 @@ export default function IncidenTable(title:IncidenTableProps) {
               </td>
               <td className="flex flex-row justify-center items-center px-6 py-16">
                 <FaUser className=" text-blue-500 text-6xl" />
-                {incident.user.name} {incident.user.lastName}
+                {/* {incident.user.name} {incident.user.lastName} */}
               </td>
               <td className="Slabo text-sm text-normal px-6 py-4">
                 {formatDate(incident.createAt)}

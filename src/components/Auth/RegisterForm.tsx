@@ -41,7 +41,7 @@ export default function RegisterForm(){
                         <Form.Control type="text" placeholder="Last Name ..." value={lastName} onChange={(e) => setLastName(e.target.value)} />
                     </Form.Group>
                     <Form.Group controlId="formBasicPhone">
-                        <Form.Control type="text" placeholder="Phone ..." value={phone} onChange={(e) => setPhone(e.target.value)} />
+                        <Form.Control type="tel" placeholder="Phone ..." value={phone} onChange={(e) => setPhone(e.target.value)} />
                     </Form.Group>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Control type="email" placeholder="Email ..." value={email} onChange={(e) => setEmail(e.target.value)} />

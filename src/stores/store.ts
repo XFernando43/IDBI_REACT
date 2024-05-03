@@ -4,7 +4,8 @@ import { Iincident } from "../models/Incidents";
 import axios from "axios";
 import { Incident } from "./Interfaces/Incident";
 import dayjs from "dayjs";
-const baseUrl = "http://localhost:3000";
+
+
 export const useIncidentStore = create<Incident>((set) => ({
   incidents: [] as Iincident[],
   user: {} as IUser,
@@ -14,7 +15,7 @@ export const useIncidentStore = create<Incident>((set) => ({
 
   fetchIncidents: async () => {
     try {
-      await axios.get(`${baseUrl}/incident`).then((data)=>{
+      await axios.get(`${import.meta.env.VITE_API_URL_BASE}/incident`).then((data)=>{
         set({ incidents: data.data });
       });
     } catch (error) {
@@ -24,7 +25,7 @@ export const useIncidentStore = create<Incident>((set) => ({
 
   fetchIncidentById:async(incidentId:string)=>{
     try {
-      await axios.get(`${baseUrl}/incident/${incidentId}`).then((response)=>{
+      await axios.get(`${import.meta.env.VITE_API_URL_BASE}/incident/${incidentId}`).then((response)=>{
         console.log("--> ",response.data);
         const data = response.data;
         set({incident:data});
@@ -38,10 +39,10 @@ export const useIncidentStore = create<Incident>((set) => ({
 
   fetchIncidentByUserId: async (userId:string)=>{
     try {
-      await axios.get(`${baseUrl}/incident/GetIncidentById/${userId}`).then((response)=>{
+      await axios.get(`${import.meta.env.VITE_API_URL_BASE}/incident/GetIncidentById/${userId}`).then((response)=>{
         console.log("--> users ",response.data);
         const data = response.data;
-        set({incident:data});
+        set({incidents:data});
       }).catch(()=>{
         
       })
@@ -97,7 +98,7 @@ export const useIncidentStore = create<Incident>((set) => ({
       formData.append('status', 'OPEN');
       formData.append('imageUrl', image, image.name);
   
-      await axios.post('http://localhost:3000/incident', formData, {
+      await axios.post(`${import.meta.env.VITE_API_URL_BASE}/incident`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

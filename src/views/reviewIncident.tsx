@@ -1,6 +1,6 @@
 import { Container, Card, Badge, ListGroup } from "react-bootstrap";
 import { useIncidentStore } from "../stores/store";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "wouter";
 
 export default function ReviewIncidentView() {
