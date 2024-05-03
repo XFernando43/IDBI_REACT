@@ -29,9 +29,9 @@ export default function CardReview(){
                         {incident.imageUrl && <ListGroup.Item><img src={incident.imageUrl} alt="Incident" className="max-w-md" /></ListGroup.Item>}
                         <ListGroup.Item><strong>Created at: </strong> {formatoFecha(incident.createAt)} </ListGroup.Item>
                         <ListGroup.Item>
-                            <strong>Reported by:</strong> {incident.user.name} {incident.user.lastName}
+                            {/* <strong>Reported by:</strong> {incident.user.name} {incident.user.lastName} */}
                             <br />
-                            <small><strong>Phone:</strong> {incident.user.phone}</small>
+                            {/* <small><strong>Phone:</strong> {incident.user.phone}</small> */}
                         </ListGroup.Item>
                     </ListGroup>
                 </Card.Body>
