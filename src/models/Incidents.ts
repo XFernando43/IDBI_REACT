@@ -1,7 +1,7 @@
 import { IUser } from "./newUser.model";
 
 export interface Iincident {
-  createdAt: Date;
+  createdAt: string;
   details: string;
   imageUrl: string;
   incidentId: number;

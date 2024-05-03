@@ -18,9 +18,15 @@ export default function FiltersTable() {
   }
 
   function Test(){
-    console.log(incidents);
-    orderByStatus("PROCESO");
-    console.log(incidents);
+    // console.log(incidents);
+    // console.log(incidents);
+    // orderByStatus("PROCESO");
+    
+    // const startDate = new Date(DateFilterStart);
+    // const endDate = new Date(DateFilterEnd);
+
+    // showAll();
+    // orderByDate(startDate,endDate);
   }
 
   return (

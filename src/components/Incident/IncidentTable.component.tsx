@@ -73,6 +73,7 @@ export default function IncidenTable() {
               <td className="Slabo text-sm text-normal px-6 py-4">
                 
                 {incident.user.phone}
+                {/* {incident.createdAt} */}
 
               </td>
             </tr>
