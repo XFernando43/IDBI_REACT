@@ -1,9 +1,9 @@
 import React from "react";
 import { useIncidentStore } from "../stores/store";
-import IncidenTable from "../components/Incident/IncidentTable.component";
+import IncidenTable from "../components/Incident/IncidentTable";
 import PruebaComponent from "../components/prueba";
-import IncidentsState from "../components/Incident/IncidentsStates.component";
-import FiltersTable from "../components/Incident/Filterstable.component";
+import IncidentsState from "../components/Incident/IncidentsStates";
+import FiltersTable from "../components/Incident/Filterstable";
 
 export default function createIncidetPage(){
   const fetchIncidentByUserId = useIncidentStore(state=>state.fetchIncidentByUserId);

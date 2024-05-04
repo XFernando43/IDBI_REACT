@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
-import IncidenTable from "../components/Incident/IncidentTable.component";
-import IncidentsState from "../components/Incident/IncidentsStates.component";
-import FiltersTable from "../components/Incident/Filterstable.component";
+import IncidenTable from "../components/Incident/IncidentTable";
+import IncidentsState from "../components/Incident/IncidentsStates";
+import FiltersTable from "../components/Incident/Filterstable";
 import { useIncidentStore } from "../stores/store";
 import React from "react";
 export default function HomePage() {

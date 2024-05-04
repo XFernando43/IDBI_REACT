@@ -1,5 +1,5 @@
-import CommentList from "../components/comments/commentsList.component";
-import CardReview from "../components/reviews/CardReviw.component";
+import CommentList from "../components/comments/commentsList";
+import CardReview from "../components/reviews/CardReviw";
 
 
 export default function ReviewIncidentView() {

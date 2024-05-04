@@ -61,7 +61,7 @@ export const useIncidentStore = create<Incident>((set) => ({
   orderByDate: async (startDate: Date, endDate: Date) => {
     set((state) => {
       if (state.incidentsResponse.length === 0) {
-        state.fetchIncidents();
+        state.fetchIncidentByUserId();
       }
       const filteredIncidents = state.incidentsResponse.filter((incident) => {
         const incidentDate = dayjs(incident.createAt);
