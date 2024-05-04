@@ -70,7 +70,7 @@ export const useIncidentStore = create<Incident>((set) => ({
           state.fetchIncidents();
         }
         if(parseInt(typeUser) === 1 && state.incidentsResponse.length === 0){
-
+          state.fetchIncidentsByUserId();
         }
       }
 
