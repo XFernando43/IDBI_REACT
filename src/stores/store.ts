@@ -35,6 +35,7 @@ export const useIncidentStore = create<Incident>((set) => ({
 
   fetchIncidentById:async(incidentId:string)=>{
     try {
+      
       const response = await axios.get(`${import.meta.env.VITE_API_URL_BASE}/incident/getIncident/${incidentId}`, config);
       const data = response.data;
       set({ incident: data });
@@ -43,10 +44,11 @@ export const useIncidentStore = create<Incident>((set) => ({
     }
   },
 
-  fetchIncidentByUserId: async ()=>{
+  fetchIncidentsByUserId: async ()=>{
     try {
+      set({incidentsResponse:[]});
       const userId = localStorage.getItem('userId');
-      await axios.get(`${import.meta.env.VITE_API_URL_BASE}/incident/GetIncidentById/${userId}`,config).then((response)=>{
+      await axios.get(`${import.meta.env.VITE_API_URL_BASE}/incident/GetIncidentsByuserId/${userId}`,config).then((response)=>{
         console.log("--> users ",response.data);
         const data = response.data;
         set({incidentsResponse:data});
@@ -60,9 +62,19 @@ export const useIncidentStore = create<Incident>((set) => ({
 
   orderByDate: async (startDate: Date, endDate: Date) => {
     set((state) => {
-      if (state.incidentsResponse.length === 0) {
-        state.fetchIncidentByUserId();
+
+
+      const typeUser = localStorage.getItem('TypeUser');
+      if(typeUser){
+        if (parseInt(typeUser) === 2 && state.incidentsResponse.length === 0) {
+          state.fetchIncidents();
+        }
+        if(parseInt(typeUser) === 1 && state.incidentsResponse.length === 0){
+
+        }
       }
+
+
       const filteredIncidents = state.incidentsResponse.filter((incident) => {
         const incidentDate = dayjs(incident.createAt);
         const startDateParsed = dayjs(startDate);
@@ -107,6 +119,7 @@ export const useIncidentStore = create<Incident>((set) => ({
   
       await axios.post(`${import.meta.env.VITE_API_URL_BASE}/incident`, formData, {
         headers: {
+          Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'
         },
       }).then(()=>{

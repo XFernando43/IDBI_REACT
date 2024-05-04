@@ -6,7 +6,7 @@ import IncidentsState from "../components/Incident/IncidentsStates";
 import FiltersTable from "../components/Incident/Filterstable";
 
 export default function createIncidetPage(){
-  const fetchIncidentByUserId = useIncidentStore(state=>state.fetchIncidentByUserId);
+  const fetchIncidentByUserId = useIncidentStore(state=>state.fetchIncidentsByUserId);
   const Incidents = useIncidentStore(state=>state.incidentsResponse);  
 
   React.useEffect(()=>{
